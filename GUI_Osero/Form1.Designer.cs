@@ -1,6 +1,6 @@
 ﻿namespace GUI_Osero
 {
-    partial class Form1
+    partial class InGame
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -28,21 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.TurnShow = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Form1
+            // TurnShow
+            // 
+            this.TurnShow.AutoSize = true;
+            this.TurnShow.Font = new System.Drawing.Font("HGS創英角ｺﾞｼｯｸUB", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.TurnShow.Location = new System.Drawing.Point(0, 0);
+            this.TurnShow.Name = "TurnShow";
+            this.TurnShow.Size = new System.Drawing.Size(0, 28);
+            this.TurnShow.TabIndex = 0;
+            // 
+            // InGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 533);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(562, 553);
+            this.Controls.Add(this.TurnShow);
+            this.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.Name = "InGame";
+            this.Text = "InGame";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label TurnShow;
     }
 }
 
