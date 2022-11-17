@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InGame));
             this.TurnShow = new System.Windows.Forms.Label();
+            this.FinishButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TurnShow
@@ -40,13 +42,28 @@
             this.TurnShow.Size = new System.Drawing.Size(0, 28);
             this.TurnShow.TabIndex = 0;
             // 
+            // FinishButton
+            // 
+            this.FinishButton.Font = new System.Drawing.Font("HG創英角ｺﾞｼｯｸUB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FinishButton.Location = new System.Drawing.Point(405, 546);
+            this.FinishButton.Name = "FinishButton";
+            this.FinishButton.Size = new System.Drawing.Size(145, 45);
+            this.FinishButton.TabIndex = 1;
+            this.FinishButton.Text = "ゲーム終了";
+            this.FinishButton.UseVisualStyleBackColor = true;
+            this.FinishButton.Click += new System.EventHandler(this.FinishButton_Click);
+            // 
             // InGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 553);
+            this.ClientSize = new System.Drawing.Size(562, 603);
+            this.Controls.Add(this.FinishButton);
             this.Controls.Add(this.TurnShow);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.MaximizeBox = false;
             this.Name = "InGame";
             this.Text = "InGame";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -58,6 +75,7 @@
         #endregion
 
         private System.Windows.Forms.Label TurnShow;
+        private System.Windows.Forms.Button FinishButton;
     }
 }
 

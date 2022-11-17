@@ -10,16 +10,20 @@ namespace GUI_Osero
 {
     internal class Stone
     {
-        /*ターンを決める変数
-         0：白のターン
-         1：黒のターン*/
-        public sbyte turn = 1;
-
         //配置完了したかどうかの変数
         public bool putCompleate;
 
         //配置可能かを格納する変数
         public bool pAble = false;
+
+        /*ターンを決める変数
+         0：白のターン
+         1：黒のターン*/
+        public sbyte turn = 1;
+
+        //駒数カウント
+        public sbyte Bnum = 0;
+        public sbyte Wnum = 0;
 
         //各座標のマスのデータ
         public sbyte[,] stones = new sbyte[8, 8];
@@ -84,9 +88,8 @@ namespace GUI_Osero
                                             //置きたいマスと自分の駒の間を自分の駒にする
                                             this.stones[i + (x * k), j + (y * k)] = this.turn;
                                         }
-                                        //配置可能であり、配置が完了したので真とする
+                                        //配置可能であり、配置が完了したので真とし、この方向の探索は終了する
                                         this.putCompleate = true;
-                                        //この方向の探索は終了とし、ブレイクする
                                         break;
                                     }
                                 }
@@ -150,6 +153,24 @@ namespace GUI_Osero
                 //ここまで到達したら置くマスがないことになるのでターンを進める
                 this.turn = (sbyte)((this.turn + 1) % 2);
                 MessageBox.Show("置けるマスがないため、パスしました");
+            }
+        }
+
+        //駒数カウント
+        public void counter()
+        {
+            for(sbyte i = 0; i < 8; i++)
+            {
+                for(sbyte j = 0; j< 8; j++)
+                {
+                    if (this.stones[i,j] == 0)
+                    {
+                        this.Wnum++;
+                    }else if (this.stones[i,j] == 1)
+                    {
+                        this.Bnum++;
+                    }
+                }
             }
         }
     }

@@ -18,11 +18,13 @@ namespace GUI_Osero
         //picturBoxコントロールの配列フィールド作成
         private System.Windows.Forms.PictureBox[,] stone;
         Stone stone_status = new Stone();
+        private Osero_ApplicationContext context;
 
-
-        public InGame()
+        public InGame(Osero_ApplicationContext applicationContext)
         {
             InitializeComponent();
+
+            this.context = applicationContext;
         }
 
         //formのロードイベントハンドラ
@@ -50,15 +52,15 @@ namespace GUI_Osero
                     //各マスのデータに応じて、表示する画像を変える
                     if (stone_status.stones[i,j] == 2)
                     {
-                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\None.png");
+                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Images\None.png");
                     }
                     else if(stone_status.stones[i,j] == 0)
                     {
-                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\White.png");
+                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Images\White.png");
                     }
                     else
                     {
-                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Black.png");
+                        this.stone[i, j].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Images\Black.png");
                     }
 
                     this.Controls.Add(this.stone[i, j]);
@@ -88,11 +90,11 @@ namespace GUI_Osero
                 {
                     if (stone_status.stones[x, y] == 0)
                     {
-                        this.stone[x, y].Image = System.Drawing.Image.FromFile(@"..\..\Properties\White.png");
+                        this.stone[x, y].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Images\White.png");
                     }
                     else if (stone_status.stones[x, y] == 1)
                     {
-                        this.stone[x, y].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Black.png");
+                        this.stone[x, y].Image = System.Drawing.Image.FromFile(@"..\..\Properties\Images\Black.png");
                     }
                 }
             }
@@ -113,6 +115,8 @@ namespace GUI_Osero
                 {
                     //ゲーム終了の処理を後ほど追加
                     Debug.WriteLine("ゲーム終了まで到達した");
+                    stone_status.counter();
+                    MessageBox.Show("●：" + stone_status.Bnum + "\n〇：" + stone_status.Wnum);
                 }
                 //配置可能かどうかの変数をリセットする
                 stone_status.pAble = false;
@@ -127,6 +131,12 @@ namespace GUI_Osero
             {
                 TurnShow.Text = "〇のターン";
             }
+        }
+
+        private void FinishButton_Click(object sender, EventArgs e)
+        {
+            //Titleに切り替え
+            this.context.SwichForm(new Title(this.context));
         }
     }
 }

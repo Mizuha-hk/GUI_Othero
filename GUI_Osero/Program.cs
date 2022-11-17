@@ -16,7 +16,26 @@ namespace GUI_Osero
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InGame());
+            Application.Run(new Osero_ApplicationContext());
+        }
+    }
+
+    //アプリのコンテキストクラス
+    public class Osero_ApplicationContext : ApplicationContext
+    {
+        public Osero_ApplicationContext()
+        {
+            this.MainForm = new Title(this);
+        }
+
+        //フォームを切り替えるメソッド
+        public void SwichForm(Form NextForm)
+        {
+            var previousForm = this.MainForm;
+            this.MainForm = NextForm;
+
+            previousForm.Close();
+            NextForm.Show();
         }
     }
 }
